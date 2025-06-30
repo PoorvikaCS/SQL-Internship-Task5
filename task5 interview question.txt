@@ -1,0 +1,82 @@
+Difference between INNER and LEFT JOIN:
+
+INNER JOIN returns only the rows with matching values in both tables.
+
+LEFT JOIN returns all rows from the left table and matched rows from the right; unmatched right-side values appear as NULL.
+
+What is a FULL OUTER JOIN?
+
+It returns all rows from both tables.
+
+Rows with no match in the other table have NULL values in place.
+
+Not supported directly in SQLite but can be simulated using LEFT JOIN UNION RIGHT JOIN.
+
+Can joins be nested?
+
+Yes. Joins can be nested using parentheses or written as multiple joins in sequence.
+Example:
+
+sql
+Copy
+Edit
+SELECT * FROM A  
+JOIN (B JOIN C ON B.id = C.bid) ON A.id = B.aid;
+How to join more than 2 tables?
+
+By chaining multiple JOINs.
+Example:
+
+sql
+Copy
+Edit
+SELECT *  
+FROM A  
+JOIN B ON A.id = B.aid  
+JOIN C ON B.bid = C.bid;
+What is a cross join?
+
+Also called a Cartesian product.
+
+Combines every row of one table with every row of another.
+
+Example: 4 rows × 3 rows = 12 results.
+
+What is a natural join?
+
+A JOIN that automatically matches columns with the same name and data type in both tables.
+
+Not recommended in complex databases as it can lead to unexpected results if column names clash.
+
+Can you join tables without foreign key?
+
+Yes. You can join any tables using JOIN ON or WHERE, even without foreign keys.
+
+Foreign keys are for data integrity, not required for querying.
+
+What is a self-join?
+
+A table joined with itself.
+
+Used to compare rows within the same table.
+
+Example: An employee table showing manager relationships.
+
+What causes Cartesian product?
+
+When a JOIN has no condition or an incorrect/missing ON clause.
+Example:
+
+sql
+Copy
+Edit
+SELECT * FROM A, B;  -- No ON condition causes full cross match
+How to optimize joins?
+
+Add indexes on join keys.
+
+Minimize the number of rows with WHERE conditions.
+
+Avoid joining unnecessary large tables.
+
+Use only needed columns in SELECT.
